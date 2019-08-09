@@ -4,7 +4,7 @@
 #
 Name     : mvn-freemarker
 Version  : 2.3.20
-Release  : 2
+Release  : 3
 URL      : https://github.com/apache/freemarker/archive/v2.3.20.tar.gz
 Source0  : https://github.com/apache/freemarker/archive/v2.3.20.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.jar
@@ -13,6 +13,7 @@ Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Entessa
 Requires: mvn-freemarker-data = %{version}-%{release}
+Requires: mvn-freemarker-license = %{version}-%{release}
 BuildRequires : apache-ant
 BuildRequires : buildreq-mvn
 
@@ -28,14 +29,22 @@ Group: Data
 data components for the mvn-freemarker package.
 
 
+%package license
+Summary: license components for the mvn-freemarker package.
+Group: Default
+
+%description license
+license components for the mvn-freemarker package.
+
+
 %prep
-## prep_prepend content
 %setup -q -n freemarker-2.3.20
-## prep_prepend end
 
 %build
 
 %install
+mkdir -p %{buildroot}/usr/share/package-licenses/mvn-freemarker
+cp LICENSE.txt %{buildroot}/usr/share/package-licenses/mvn-freemarker/LICENSE.txt
 mkdir -p %{buildroot}/usr/share/java/.m2/repository/org/freemarker/freemarker/2.3.20
 cp %{SOURCE1} %{buildroot}/usr/share/java/.m2/repository/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.jar
 
@@ -50,3 +59,7 @@ cp %{SOURCE2} %{buildroot}/usr/share/java/.m2/repository/org/freemarker/freemark
 %defattr(-,root,root,-)
 /usr/share/java/.m2/repository/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.jar
 /usr/share/java/.m2/repository/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.pom
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/mvn-freemarker/LICENSE.txt
