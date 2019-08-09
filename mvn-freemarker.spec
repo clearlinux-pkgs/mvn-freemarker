@@ -4,7 +4,7 @@
 #
 Name     : mvn-freemarker
 Version  : 2.3.20
-Release  : 1
+Release  : 2
 URL      : https://github.com/apache/freemarker/archive/v2.3.20.tar.gz
 Source0  : https://github.com/apache/freemarker/archive/v2.3.20.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/freemarker/freemarker/2.3.20/freemarker-2.3.20.jar
@@ -29,6 +29,9 @@ data components for the mvn-freemarker package.
 
 
 %prep
+## prep_prepend content
+%setup -q -n freemarker-2.3.20
+## prep_prepend end
 
 %build
 
